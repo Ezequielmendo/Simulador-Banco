@@ -1,0 +1,96 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: #5a67d8;
+    margin-bottom: 20px;
+}
+
+/* Loan Detail Container */
+.prestamo-detalle {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 400px;
+    text-align: left;
+}
+
+.prestamo-detalle p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.prestamo-detalle p strong {
+    color: #2d3748;
+}
+
+/* Buttons and Links */
+button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #5a67d8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4c51bf;
+}
+
+.error {
+    color: #e53e3e;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+a {
+    color: #5a67d8;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Flash Messages */
+#flash-messages {
+    display: none; /* Controlled by JavaScript */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .prestamo-detalle {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}

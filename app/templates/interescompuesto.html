@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Banco - Calculadora de interes Compuesto</title>
+    <link rel="stylesheet" href="static/css/simulador.css">
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="btn-volver">Volver</a>
+        <h1>Calculadora</h1>
+        
+        <div class="simulator" id="interesCompuesto">
+            <h2>Calculadora de Interés Compuesto</h2>
+            <form action="/interescompuesto" method="POST" id="interesCompuestoForm">
+                <label for="capital">Capital inicial ($):</label>
+                <input type="number" name="capital" required min="0" step="0.01">
+                
+                <label for="tasaInteres">Tasa de interés anual (%):</label>
+                <input type="number" name="tasainteres" required min="0" max="100" step="0.01">
+                
+                <label for="tiempo">Tiempo (años):</label>
+                <input type="number" name="tiempo" required min="1">
+                
+                <label for="aportacionMensual">Aportación mensual ($):</label>
+                <input type="number" name="aportemensual" required min="0" step="0.01">
+                
+                <button type="submit">Calcular Interés Compuesto</button>
+            </form>
+        </div>
+        {% if capitalfinal is not none %}
+        <div class="result">
+            <h2>Monto final: ${{ capitalfinal }} después de {{ tiempo }} años.</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

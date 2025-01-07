@@ -1,0 +1,91 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    display: flex;
+    background-color: #DDC8C4;
+}
+.sidebar {
+    width: 250px;
+    background-color: #6B4D57;
+    height: 100vh;
+    padding: 20px;
+}
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.sidebar ul {
+    list-style-type: none;
+}
+.sidebar li {
+    margin-bottom: 15px;
+}
+.sidebar a {
+    text-decoration: none;
+    color: #EFF9F0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.sidebar a:hover {
+    color: #007bff;
+}
+.main-content {
+    flex: 1;
+    padding: 30px;
+}
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+.transactions {
+    grid-column: span 2;
+    margin-top: 20px;
+}
+.transactions h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+.transaction-item:last-child {
+    border-bottom: none;
+}
+.transaction-name {
+    font-weight: bold;
+}
+.transaction-amount {
+    font-weight: bold;
+}
+.transaction-amount.positive {
+    color: green;
+}
+.transaction-amount.negative {
+    color: red;
+}
+   

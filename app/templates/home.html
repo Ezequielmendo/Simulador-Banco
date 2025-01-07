@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Banco - Dashboard</title>
+    <link rel="stylesheet" href="static/css/inicio.css">
+    <style>
+        /* Additional styles to ensure proper layout */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .user-info {
+            width: 100%;
+        }
+        .balance-transactions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Mi Banco</h2>
+        <ul>
+            <li><h2><a href="/transferencia"><span class="icon"></span>Transferencia</a></h2></li>
+            <li><h2><a href="/interescompuesto"><span class="icon"></span>Simulador de Interés Compuesto</a></h2></li>
+            <li><h2><a href="/prestamo"><span class="icon"></span>Solicitar Préstamo</a></h2></li>
+            <li><h2><a href="/misprestamos"><span class="icon"></span>Mis Préstamos</a></h2></li>
+            <li><h2><a href="/acciones"><span class="icon"></span>Acciones</a></h2></li>
+            <li><h2><a href="/misacciones"><span class="icon"></span>Mis Acciones</a></h2></li>
+            <li><h2><a href="/comprardolares"><span class="icon"></span>Comprar dolares</a></h2></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="dashboard">
+            <div class="card user-info">
+                <h3>ID USUARIO: {{session['usuario_id']}} </h3>
+            </div>
+            <div class="balance-transactions">
+                <div class="card">
+                    <h3>Balance Total</h3>
+                    <p>USD {{saldo}} </p>
+                </div>
+                <div class="card transactions">
+                    <h3>Últimas Transacciones</h3>
+                    {% if data %}
+                        {% for transferencia in data %}
+                            <div class="transaction-item">
+                                {% if transferencia[0] == session['usuario_id'] %}
+                                    <span class="transaction-name">Transferencia a {{ transferencia[1] }}:</span>
+                                {% else %}
+                                    <span class="transaction-name">Transferencia de {{ transferencia[0] }}:</span>
+                                {% endif %}
+                                <span class="transaction-amount"> ${{ transferencia[2] }}</span>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No se han realizado transacciones aún.</p>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script id="flash-messages" type="application/json">
+        {{ messages | tojson }}
+    </script>
+    {% endif %}
+    {% endwith %} 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ url_for('static', filename='js/mensajes.js') }}"></script>
+</body>
+</html>

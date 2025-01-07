@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #DDC8C4;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #0066cc;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.dollar-info {
+    margin: 30px 0;
+}
+
+.dollar-info h2 {
+    font-size: 3rem;
+    color: #33cc33;
+    margin: 0;
+}
+
+.dollar-info p {
+    font-size: 1rem;
+    color: #888;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #aaa;
+}

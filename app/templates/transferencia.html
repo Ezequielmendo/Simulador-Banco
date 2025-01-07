@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Banco - Transferencia</title>
+    <link rel="stylesheet" href="static/css/simulador.css">
+</head>       
+        <a href="/" class="btn-volver">Volver</a>
+        <div class="simulator" id="prestamo">
+            <h2>Transferir dinero</h2>
+            <form action="/transferencia" method="POST" id="prestamoForm">
+                <label for="montotransferencia">Monto de la Transferencia ($):</label>
+                <input type="number" name="montotransferencia" required min="1" step="0.01">
+                
+                <label for="ID">ID del usuario que recibira la transferencia:</label>
+                <input type="text" name="ID" required>
+                
+                <button type="submit">Realizar transferencia</button>
+            </form>
+            <div id="resultadoPrestamo" class="result"></div>
+        </div>
+    </div>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script id="flash-messages" type="application/json">
+        {{ messages | tojson }}
+    </script>
+    {% endif %}
+    {% endwith %} 
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/mensajes.js') }}"></script>
+</body>
+</html>

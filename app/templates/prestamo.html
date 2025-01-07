@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Banco - Simulador de Préstamo</title>
+    <link rel="stylesheet" href="static/css/simulador.css">
+</head>       
+        <a href="/" class="btn-volver">Volver</a>
+        <div class="simulator" id="prestamo">
+            <h2>Solicitar Préstamo</h2>
+            <form action="/prestamo" method="POST" id="prestamoForm">
+                <label for="montoPrestamo">Monto del préstamo ($):</label>
+                <input type="number" name="montoprestamo" required min="0" step="0.01">
+                
+                <label for="tasaPrestamo">Tasa de interés anual (%):</label>
+                <input type="number" name="tasaprestamo" required min="0" max="100" step="0.01">
+                
+                <label for="plazoPrestamo">Plazo (meses):</label>
+                <input type="number" name="plazoprestamo" required min="1">
+                
+                <button type="submit">Calcular Préstamo</button>
+            </form>
+            <div id="resultadoPrestamo" class="result"></div>
+        </div>
+    </div>
+    <div>
+        {% if totalpagar is not none %}
+            <h2>Cuota Mensual: {{plazomeses}} cuotas de ${{cuotamensual}} </h2>
+            <div>
+                <h2>Total a pagar: ${{totalpagar}} </h2> 
+            </div>
+            <div>
+                <h2>Total intereses: ${{totalinteres}} </h2>
+            </div>
+            <!-- Botón adicional para solicitar el préstamo -->
+            <form action="/solicitar_prestamo" method="POST">
+                <input type="hidden" name="monto" value="{{ montoprestamo }}">
+                <input type="hidden" name="tasa" value="{{ tasaprestamo }}">
+                <input type="hidden" name="plazo" value="{{ plazoprestamo }}">
+                <input type="hidden" name="cuotamensual" value="{{ cuotamensual }}">
+                <input type="hidden" name="total" value="{{ totalpagar }}">
+                <button type="submit">¿Desea solicitar el préstamo?</button>
+            </form>
+        {% endif %}
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script id="flash-messages" type="application/json">
+        {{ messages | tojson }}
+    </script>
+    {% endif %}
+    {% endwith %} 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ url_for('static', filename='js/mensajes.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Préstamos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/css/misprestamos.css">
+</head>
+<body>
+    <a href="/" class="btn-volver">Volver</a>
+    <div class="container">
+        <header>
+            <h1>Mis Préstamos</h1>
+        </header>
+        <main>
+            {% if dataprestamos is not none %}
+                {% for prestamo in dataprestamos %}
+                <a href="/misprestamos/prestamo_detalle?prestamo_id={{ prestamo[0] }}" style="text-decoration: none; color: inherit;">
+                    <div class="prestamo-card">
+                        <div class="prestamo-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="prestamo-details">
+                            <h2 class="prestamo-amount">${{prestamo[6]}}</h2>
+                            <p class="prestamo-info">{{prestamo[2]}} cuotas de ${{prestamo[4]}}</p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                <div class="no-prestamos">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h2>No has solicitado ningún préstamo.</h2>
+                    <p>¡Solicita uno <a href="/prestamo">Aquí</a>!</p>
+                </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

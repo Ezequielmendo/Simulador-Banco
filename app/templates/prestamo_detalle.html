@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Préstamo</title>
+    <link rel="stylesheet" href="/static/css/prestamo_detalle.css">
+</head>
+<body>
+    <h1>Detalles del Préstamo</h1>
+
+    {% if prestamo %}
+    <div class="prestamo-detalle">
+        <p><strong>Monto inicial:</strong> ${{ prestamo.monto }}</p>
+        <p><strong>Cuotas restantes:</strong> {{ prestamo.cuotas }}</p>
+        <p><strong>Cuota mensual:</strong> ${{ prestamo.cuota_mensual }}</p>
+        <p><strong>Total restante:</strong> ${{ prestamo.monto_total }}</p>
+    </div>
+
+    {% if usuario_saldo >= prestamo.cuota_mensual %}
+    <form action="{{ url_for('pagar_cuota') }}" method="POST">
+        <input type="hidden" name="prestamo_id" value="{{ prestamo.id }}">
+        <button type="submit" class="btn btn-primary">Pagar cuota</button>
+    </form>
+    {% else %}
+        <p class="error">No tienes saldo suficiente para pagar esta cuota.</p>
+    {% endif %}
+    {% else %}
+    <p>No se encontró información sobre este préstamo.</p>
+    {% endif %}
+
+    <a href="{{ url_for('misprestamos') }}">Volver a mis préstamos</a>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <script id="flash-messages" type="application/json">
+        {{ messages | tojson }}
+    </script>
+    {% endif %}
+    {% endwith %} 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ url_for('static', filename='js/mensajes.js') }}"></script>
+</body>
+</html>

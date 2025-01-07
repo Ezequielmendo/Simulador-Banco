@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    max-height: 400px; /* Limitar la altura de la tabla */
+    overflow-y: auto; /* Desplazamiento vertical si hay muchas filas */
+    display: block; /* Para hacer que la tabla sea desplazable */
+}
+
+table th, table td {
+    padding: 6px 10px; /* Reducir el padding para hacerlo más compacto */
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px; /* Reducir el tamaño de la fuente */
+}
+
+table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Asegurarse de que las columnas no se expandan demasiado */
+table td, table th {
+    width: 650px; /* Ajustar el ancho de las columnas */
+    max-width: 650px; /* No permitir que las columnas se expandan más de 150px */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Añadir puntos suspensivos si el contenido es demasiado largo */
+    white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+}

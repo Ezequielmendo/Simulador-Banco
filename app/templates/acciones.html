@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Acciones</title>
+    <link rel="stylesheet" href="static/css/acciones.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1>Simulación de Acciones</h1>
+        
+        <!-- Tabla de acciones cargadas desde el CSV -->
+        <table id="tablaAcciones">
+            <thead>
+                <tr>
+                    <th>Símbolo</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for accion in acciones %}
+                <tr>
+                    <td>{{ accion['simbolo'] }}</td>
+                    <td>{{ accion['nombre'] }}</td>
+                    <td>{{ accion['precio'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <form action="/acciones" method="POST"> 
+    <div class="compra">
+        <label for="simbolo">Simbolo:</label>
+        <input type="text" name="simbolo" required>
+
+        <label for="precio">Precio: </label>
+        <input type="button" name="a" value="Calcular Unidades">
+
+        <label for="unidades">Unidades:</label>
+        <input type="number" name="unidades" required>
+        <input type="button" name="b" value="Calcular Precio">
+    </div>
+    </form>
+    
+</body>
+</html>
