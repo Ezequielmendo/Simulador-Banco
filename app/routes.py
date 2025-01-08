@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, flash, session, url_for
 from app import app
 from app.funciones import actualizar_dolares, actualizar_saldo, crear_usuario_temporal, obtener_detalle_prestamo, obtener_dolares, obtener_prestamos_usuario, obtener_saldo, obtener_transferencias_usuario, pagar_cuota_prestamo, realizar_transferencia, registrar_prestamo, simular_prestamo
-import csv
 import requests
 
 @app.route('/')
