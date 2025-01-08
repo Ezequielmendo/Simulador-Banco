@@ -18,10 +18,12 @@
                 <h2 id="usd-price">${{ dollar_price }} ARS</h2>
                 <p>Precio del dólar frente al peso argentino (ARS).</p>
             </div>
-            <form method="POST" action="/comprar_dolares">
-                <label for="cantidad-dolares">Cantidad de dólares a comprar:</label>
+            <p>Saldo disponible: {{ saldo }} ARS</p>
+            <p>Dólares disponibles: {{ dolares }} USD</p>
+            <form method="POST" action="/vender_dolares">
+                <label for="cantidad-dolares">Cantidad de dólares a vender:</label>
                 <input type="number" id="cantidad-dolares" name="cantidad_dolares" step="0.01" min="0" required>
-                <button type="submit">Comprar</button>
+                <button type="submit">Vender</button>
             </form>
         </main>
     </div>

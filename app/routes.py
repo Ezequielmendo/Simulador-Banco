@@ -24,7 +24,8 @@ def home():
     
     usuario = session['usuario_id']
     saldo = obtener_saldo(usuario)
-    
+    dolares = obtener_dolares(usuario)
+
     if saldo is None:
         flash('Error al obtener el saldo del usuario.')
         return redirect(url_for('home'))
@@ -36,7 +37,7 @@ def home():
         flash('Error al cargar historial de transferencias del usuario.', 'error')
         data = []
 
-    return render_template('home.html', data=data, saldo=saldo)
+    return render_template('home.html', data=data, saldo=saldo, dolares=dolares)
 
 
 @app.route('/transferencia', methods=['GET','POST'])
@@ -221,7 +222,7 @@ def compra_dolares():
         try:
             cantidad_dolares = float(request.form['cantidad_dolares'])
             if cantidad_dolares <= 0:
-                flash('La cantidad de dólares debe ser positiva.', 'error')
+                flash('La cantidad de dólares debe ser válida.', 'error')
                 return render_template('comprar_dolares.html', dollar_price=dollar_price)
 
             costo_total = cantidad_dolares * dollar_price
@@ -241,20 +242,34 @@ def compra_dolares():
     return render_template('comprar_dolares.html', dollar_price=dollar_price)
 
 
-API_KEY = 'SLTZBQ9G3NAEF30K'
-API_URL = 'https://www.alphavantage.co/query'
+@app.route('/vender_dolares', methods=['GET','POST'])
+def vender_dolares():
+    # Llamada a la API para obtener el precio del dólar
+    url = 'https://api.exchangerate-api.com/v4/latest/USD'
+    response = requests.get(url)
+    data = response.json()
+    dollar_price = data['rates']['ARS']
+    usuario = session.get('usuario_id')
+    saldo = obtener_saldo(usuario)
+    dolares = obtener_dolares(usuario)
 
+    if request.method == 'POST':
+        try:
+            cantidad_dolares = float(request.form['cantidad_dolares'])
+            if cantidad_dolares <= 0:
+                flash('La cantidad de dólares debe ser válida.', 'error')
+                return render_template('vender_dolares.html', dollar_price=dollar_price)
 
-def leer_csv():
-    acciones = []
-    with open('app/acciones.csv', mode='r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            acciones.append(row)
-    return acciones
-
-
-@app.route('/acciones', methods=['GET','POST'])
-def acciones():
-    acciones = leer_csv()
-    return render_template('acciones.html', acciones=acciones)
+            costo_total = cantidad_dolares * dollar_price
+            
+            # Verificar si el usuario tiene saldo suficiente
+            if dolares is None or dolares < cantidad_dolares:
+                flash('No tienes dólares suficiente para realizar esta venta.', 'error')
+            else:
+                # Realizar la compra
+                actualizar_saldo(usuario, saldo + costo_total)
+                actualizar_dolares(usuario,  dolares - cantidad_dolares)
+                flash(f'Venta realizada con éxito. Vendiste {cantidad_dolares} USD por ${costo_total:.2f} ARS.', 'success')
+        except ValueError:
+            flash('Error al procesar la venta. Inténtelo más tarde.', 'error')
+    return render_template('vender_dolares.html', dollar_price=dollar_price, saldo=saldo, dolares=dolares)

@@ -23,7 +23,6 @@ def crear_usuario_temporal():
         db.session.execute(guardar_usuario, {'usuario_id':usuario_id, 'saldo':saldo, 'dolares':dolares})
         db.session.commit()
         session['usuario_id'] = usuario_id
-        session['saldo'] = 1000000
         return usuario_id
     except Exception:
         return None
@@ -274,7 +273,7 @@ def pagar_cuota_prestamo(prestamo_id, usuario_id):
 
         # Actualizar el préstamo
         nuevas_cuotas_restantes = cuotas_restantes - 1
-        nuevo_monto_total = monto_total - cuota_mensual
+        nuevo_monto_total = round(monto_total - cuota_mensual, 2)
         actualizar_prestamo = text('''
             UPDATE prestamos 
             SET cuotas=:nuevas_cuotas, monto_total=:nuevo_monto 

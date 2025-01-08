@@ -6,6 +6,33 @@ body {
     color: #333;
 }
 
+.sidebar {
+    width: 250px;
+    background-color: #6B4D57;
+    height: 100vh;
+    padding: 20px;
+}
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+.sidebar ul {
+    list-style-type: none;
+}
+.sidebar li {
+    margin-bottom: 15px;
+}
+.sidebar a {
+    text-decoration: none;
+    color: #EFF9F0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.sidebar a:hover {
+    color: #007bff;
+}
+
 .container {
     max-width: 600px;
     margin: 50px auto;
@@ -61,4 +88,17 @@ footer {
     margin-top: 20px;
     font-size: 0.8rem;
     color: #aaa;
+}
+
+.btn-volver {
+    display: inline-block; /* Permite aplicar padding y margin */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
 }

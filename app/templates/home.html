@@ -6,7 +6,6 @@
     <title>Mi Banco - Dashboard</title>
     <link rel="stylesheet" href="static/css/inicio.css">
     <style>
-        /* Additional styles to ensure proper layout */
         .main-content {
             display: flex;
             flex-direction: column;
@@ -34,9 +33,8 @@
             <li><h2><a href="/interescompuesto"><span class="icon"></span>Simulador de Interés Compuesto</a></h2></li>
             <li><h2><a href="/prestamo"><span class="icon"></span>Solicitar Préstamo</a></h2></li>
             <li><h2><a href="/misprestamos"><span class="icon"></span>Mis Préstamos</a></h2></li>
-            <li><h2><a href="/acciones"><span class="icon"></span>Acciones</a></h2></li>
-            <li><h2><a href="/misacciones"><span class="icon"></span>Mis Acciones</a></h2></li>
-            <li><h2><a href="/comprardolares"><span class="icon"></span>Comprar dolares</a></h2></li>
+            <li><h2><a href="/comprar_dolares"><span class="icon"></span>Comprar dólares</a></h2></li>
+            <li><h2><a href="/vender_dolares"><span class="icon"></span>Vender dólares</a></h2></li>
         </ul>
     </div>
     <div class="main-content">
@@ -47,7 +45,7 @@
             <div class="balance-transactions">
                 <div class="card">
                     <h3>Balance Total</h3>
-                    <p>USD {{saldo}} </p>
+                    <p>ARS ${{saldo}}, USD ${{dolares}}</p>
                 </div>
                 <div class="card transactions">
                     <h3>Últimas Transacciones</h3>
